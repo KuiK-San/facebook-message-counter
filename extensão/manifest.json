@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Mensageiro",
+    "description": "Extensão que conta as mensagens enviadas pelo usuario!",
+    "version": "1.0",
+    "permissions": ["activeTab", "scripting", "webRequest", "storage"],
+    "action": {
+        "default_popup": "index.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.facebook.com/"],
+            "js": ["content.js"]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
