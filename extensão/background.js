@@ -1,6 +1,7 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if(request.message && request.acao == 'salvar'){
+            console.log(request.qtd)
             var dataAtual = new Date();
 
             var dia = dataAtual.getDate();
@@ -18,10 +19,9 @@ chrome.runtime.onMessage.addListener(
             */
             chrome.storage.local.get('user', (result) => {
 
-                chrome.storage.local.set({[result.user]: {user: result.user, msgs: request.qtd}})
+                chrome.storage.local.set({[result.user]: {[dataFormatada]: {msgs: request.qtd}}})
             })
 
-            chrome.storage.local.get(`dia_${dataFormatada}`, (result) => {console.log(result)})
 
         }
     }
