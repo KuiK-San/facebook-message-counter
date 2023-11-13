@@ -2,6 +2,8 @@ document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
 
     let link = event.target.getAttribute('action')
+    let linkServidor = link.split('api')
+    chrome.storage.local.set({'link': linkServidor[0]})
 
     var nome = document.getElementById('nome').value;
     var id = document.getElementById('id').value

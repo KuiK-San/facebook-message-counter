@@ -1,12 +1,10 @@
-var user
-chrome.storage.local.get('text', (resultado) => {
-    user = resultado.text
-});
+
 var dataAtual = new Date();
 
 var dia = dataAtual.getDate();
 var mes = dataAtual.getMonth() + 1; 
 var ano = dataAtual.getFullYear();
+dataAtual = dia + '/' + mes + '/' + ano
 var ultima;
 
 const escutador = () => {
@@ -21,22 +19,19 @@ const escutador = () => {
 
 
 function contaClique() {
-    mensagens++
-    salvarMsgs(mensagens)
+    salvarMsgs()
 }
 
 
 function contaEnter(event) {
     if (event.which === 13 && ultima !== '') {
-        mensagens++
-        salvarMsgs(mensagens)
+        salvarMsgs()
     }
     ultima = event.srcElement.children[0].children[0].textContent;
 }
 
-function salvarMsgs(qtd){
-    chrome.runtime.sendMessage({ message: true, acao: 'salvar', qtd: qtd });
-    chrome.storage.local.get(null, (result)=>{console.log(result)})
+function salvarMsgs(){
+    
 }
 
 let intervalo = setInterval(escutador, 1000);

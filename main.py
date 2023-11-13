@@ -35,6 +35,10 @@ def criarUser():
     doc = colecao.find_one({'id': userId})
     
     return jsonify({'status':'cad', 'nome': doc['nome'], 'id': doc['id']})
+"""
+@app.route('/api/somar', methods=['GET'])
+def acrescentar():
+"""
 
 
 if __name__ == "__main__":
