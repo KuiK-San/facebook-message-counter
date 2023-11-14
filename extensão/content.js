@@ -32,6 +32,23 @@ function contaEnter(event) {
 
 function salvarMsgs(){
     
+    chrome.storage.local.get(null, (result) => {
+        let userId = result.secret
+        let link = result.link
+
+        fetch(link + '/api/somar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userId: userId, data: dataAtual, tipo: 'mensagem'})
+        })
+        .then(response => response.json())
+        .then((data)=>{
+            console.log(data)
+        })
+        .catch(erro => console.error(erro))
+    })
 }
 
 let intervalo = setInterval(escutador, 1000);
