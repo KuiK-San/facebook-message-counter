@@ -15,22 +15,28 @@ const escutador = () => {
 
         element.addEventListener('keyup', contaEnter);
     });
+    let feed = document.querySelector('[role="main"]')
+    feed.style.background = 'red'
+    let caixaComent = feed.querySelectorAll(".x1lliihq")
+    caixaComent.forEach(element => element.style.brackground = 'blue')
+
+    
 };
 
 
 function contaClique() {
-    salvarMsgs()
+    salvarMsgs('mensagem')
 }
 
 
 function contaEnter(event) {
     if (event.which === 13 && ultima !== '') {
-        salvarMsgs()
+        salvarMsgs('mensagem')
     }
     ultima = event.srcElement.children[0].children[0].textContent;
 }
 
-function salvarMsgs(){
+function salvarMsgs(type){
     
     chrome.storage.local.get(null, (result) => {
         let userId = result.secret
@@ -41,7 +47,7 @@ function salvarMsgs(){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({userId: userId, data: dataAtual, tipo: 'mensagem'})
+            body: JSON.stringify({userId: userId, data: dataAtual, tipo: type})
         })
         .then(response => response.json())
         .then((data)=>{
