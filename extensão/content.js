@@ -20,7 +20,11 @@ const escutador = () => {
     comentarios.forEach(element => element.addEventListener('keyup', contaEnterC))
     
     comentarios = document.querySelectorAll('.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.x1qughib.x6s0dn4.xozqiw3.x1q0g3np.xcud41i.x139jcc6.x4cne27.xifccgj')
-    comentarios.forEach(element => element.addEventListener('click', contaCliqueC))    
+    comentarios.forEach(element => element.addEventListener('click', contaCliqueC))
+
+    let excluir = document.querySelectorAll('.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.xl56j7k.x6s0dn4.xozqiw3.x1q0g3np.xi112ho.x17zwfj4.x585lrc.x1403ito.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.xbxaen2.x1u72gb5.xtvsq51.x1r1pt67')
+
+    // excluir.forEach(element => element.addEventListener('click', exclui))    
 };
 
 
@@ -41,9 +45,18 @@ function contaEnter(event) {
 }
 function contaEnterC(event) {
     if (event.which === 13 && ultimaC !== '') {
-        salvarMsgs('comentario')
+        setTimeout(()=>{
+            if(event.srcElement.children[0].children[0].textContent == ""){
+
+                salvarMsgs('comentario')
+            }
+        },1000)
     }
-    ultimaC = event.srcElement.children[0].children[0].textContent;
+}
+
+
+function exclui(event){
+    salvarMsgs('excluidas')
 }
 
 function salvarMsgs(type){
