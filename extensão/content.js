@@ -5,7 +5,8 @@ var dia = dataAtual.getDate();
 var mes = dataAtual.getMonth() + 1; 
 var ano = dataAtual.getFullYear();
 dataAtual = dia + '/' + mes + '/' + ano
-var ultima;
+var ultimaM;
+var ultimaC;
 
 const escutador = () => {
     let chat = document.querySelectorAll('.xuk3077.x78zum5.x6prxxf.xz9dl7a.xsag5q8');
@@ -15,12 +16,11 @@ const escutador = () => {
 
         element.addEventListener('keyup', contaEnter);
     });
-    let feed = document.querySelector('[role="main"]')
-    feed.style.background = 'red'
-    let caixaComent = feed.querySelectorAll(".x1lliihq")
-    caixaComent.forEach(element => element.style.brackground = 'blue')
-
+    let comentarios = document.querySelectorAll('.xi81zsa.xo1l8bm.xlyipyv.xuxw1ft.x49crj4.x1ed109x.xdl72j9.x1iyjqo2.xs83m0k.x6prxxf.x6ikm8r.x10wlt62.x1y1aw1k.xn6708d.xwib8y2.x1ye3gou')
+    comentarios.forEach(element => element.addEventListener('keyup', contaEnterC))
     
+    comentarios = document.querySelectorAll('.x9f619.x1n2onr6.x1ja2u2z.x78zum5.x2lah0s.x1qughib.x6s0dn4.xozqiw3.x1q0g3np.xcud41i.x139jcc6.x4cne27.xifccgj')
+    comentarios.forEach(element => element.addEventListener('click', contaCliqueC))    
 };
 
 
@@ -28,12 +28,22 @@ function contaClique() {
     salvarMsgs('mensagem')
 }
 
+function contaCliqueC() {
+    salvarMsgs('comentario')
+}
+
 
 function contaEnter(event) {
-    if (event.which === 13 && ultima !== '') {
+    if (event.which === 13 && ultimaM !== '') {
         salvarMsgs('mensagem')
     }
-    ultima = event.srcElement.children[0].children[0].textContent;
+    ultimaM = event.srcElement.children[0].children[0].textContent;
+}
+function contaEnterC(event) {
+    if (event.which === 13 && ultimaC !== '') {
+        salvarMsgs('comentario')
+    }
+    ultimaC = event.srcElement.children[0].children[0].textContent;
 }
 
 function salvarMsgs(type){

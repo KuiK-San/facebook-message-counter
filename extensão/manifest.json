@@ -4,9 +4,6 @@
     "description": "Extensão que conta as mensagens enviadas pelo usuario!",
     "version": "1.0",
     "permissions": ["activeTab", "scripting", "webRequest", "storage"],
-    "action": {
-        "default_popup": "index.html"
-    },
     "content_scripts": [
         {
             "matches": ["https://www.facebook.com/"],
