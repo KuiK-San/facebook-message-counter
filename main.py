@@ -31,7 +31,7 @@ def criarUser():
         doc = colecao.find_one({'id': userId})
         if not doc:
             return jsonify({'status': False})
-        print(str(doc['_id']))
+        # print(str(doc['_id']))
         return jsonify({'status':'cad', 'nome': doc['nome'], 'id': doc['id'], 'secret': str(doc['_id'])})
     
     doc = colecao.find_one({'id': userId})
@@ -50,10 +50,8 @@ def acrescentar():
         return jsonify({'status': 'Falha'})
     
     if dados['data'] in doc['datas']:
-        if dados['tipo'] == 'mensagem' and 'mensagem' in doc['datas'][dados['data']]:
-            qtd = doc['datas'][dados['data']]['mensagem']
-        elif dados['tipo'] == 'comentario' and 'comentario' in doc['datas'][dados['data']]:
-            qtd = doc['datas'][dados['data']]['comentario']
+        if dados['tipo'] in doc['datas'][dados['data']]:
+           qtd = doc['datas'][dados['data']][dados['tipo']]
         else:
             qtd = 0
     else:
