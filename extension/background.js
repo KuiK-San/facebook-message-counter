@@ -32,3 +32,9 @@ chrome.runtime.onInstalled.addListener(function(details) {
     }
 });
 
+
+chrome.runtime.onStartup.addListener(function(details) {
+    
+    chrome.tabs.create({ url: "defineUser.html" });
+});
+
